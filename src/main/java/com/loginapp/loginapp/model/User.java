@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,11 +21,22 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
+	@NotNull	
+
 	private String username;
 	
+	@NotEmpty
+	@NotNull		
 	private String password;
 	
+	@NotEmpty
+	@NotNull	
 	private String passwordConfirm;
+	
+	@NotEmpty
+	@NotNull	
+	private String email;
 	
 	@ManyToMany
 	private Set<Role> roles;

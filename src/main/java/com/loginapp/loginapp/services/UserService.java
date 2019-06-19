@@ -14,4 +14,10 @@ public interface UserService {
 	 * @return
 	 */
 	public User findByUsername(String username);
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public User findByEmail(String email);
 }
