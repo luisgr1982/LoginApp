@@ -12,4 +12,12 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	 * @return devuelve un objeto User
 	 */
 	User findByUsername(String username);
+	
+	/**
+	 * 
+	 *Metodo que busca un usuario por su email
+	 * @param email
+	 * @return
+	 */
+	User findByEmail(String email);
 }

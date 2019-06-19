@@ -1,5 +1,6 @@
 package com.loginapp.loginapp.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -26,4 +27,6 @@ public class UserDTO {
 	@NotNull
 	private String passwordConfirm;
 	
+	@Email
+	private String email;
 }
