@@ -7,7 +7,7 @@ public interface UserService {
 	 * 
 	 * @param user
 	 */
-	public void saveUser(User user);
+	public User saveUser(User user);
 	/**
 	 * 
 	 * @param username

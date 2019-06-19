@@ -28,16 +28,16 @@ public class UserController {
 	private UserMapperServiceImpl mapper;
 	
 	@PostMapping("/register")
-	public ResponseEntity<UserDTO> registrationUserAccount(@Valid @RequestBody UserDTO userDTO) throws UserLoginExistException, EmailLoginExistException {
+	public ResponseEntity<?> registrationUserAccount(@Valid @RequestBody UserDTO userDTO) throws UserLoginExistException, EmailLoginExistException {
 		if (Optional.ofNullable(userService.findByUsername(userDTO.getUsername())).isPresent()) throw new UserLoginExistException();
 		if (Optional.ofNullable(userService.findByEmail(userDTO.getEmail())).isPresent()) throw new EmailLoginExistException();
-		
 		userService.saveUser(mapper.mapToEntity(userDTO));
-		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+		return ResponseEntity.ok().build();
+		//return new ResponseEntity<UserDTO>(mapper.mapToDto(userService.saveUser(mapper.mapToEntity(userDTO))),HttpStatus.OK);
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/home")
 	public String welcome() {
-		return "login";
+		return "Bienvenidos";
 	}
 }

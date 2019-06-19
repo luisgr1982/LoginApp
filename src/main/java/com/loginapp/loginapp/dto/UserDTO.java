@@ -1,10 +1,13 @@
 package com.loginapp.loginapp.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
+import com.loginapp.loginapp.model.Role;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,4 +32,6 @@ public class UserDTO {
 	
 	@Email
 	private String email;
+	
+	private List<Role> roles;
 }
