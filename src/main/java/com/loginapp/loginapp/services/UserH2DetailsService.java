@@ -23,9 +23,7 @@ public class UserH2DetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		//TODO falta persistencia entre tabla user-role, dejamos role por defecto
-		authorities.add(new SimpleGrantedAuthority("USER"));
-		//user.get().getRoles().stream().forEach(b->authorities.add(new SimpleGrantedAuthority(b.getName())));
+		user.get().getRoles().stream().forEach(b->authorities.add(new SimpleGrantedAuthority(b.getName())));
 		return new org.springframework.security.core.userdetails.User(user.get().getUsername(),user.get().getPassword(),authorities);
 	}
 
