@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.loginapp.loginapp.services.UserH2DetailsService;
 
 @Configuration
-//@EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserH2DetailsService userDetailsService;
@@ -29,7 +27,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
         .antMatchers("/login").permitAll()
         .antMatchers("/h2-console/**").permitAll()
         .antMatchers(HttpMethod.POST,"/register").permitAll()
-        //.antMatchers("/home/**").hasRole("USER")
+        .antMatchers("/home").hasAuthority("USER")
         .anyRequest().authenticated()
         .and().httpBasic()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
